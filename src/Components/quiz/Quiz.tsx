@@ -1,7 +1,7 @@
 import React from 'react';
 import Question, {QuestionInterface} from '../Question/Question';
 
-function Quiz() {
+const Quiz : React.FC = () => {
   let questions: QuestionInterface[] = [
     {
       tittle: 'What is react',

@@ -1,0 +1,18 @@
+{
+    "category": "frontEnd",
+    "name": "React",
+    "id": "1",
+    "icon": "https://img.icons8.com/officel/80/000000/react.png",
+    "questions": [
+        {
+            "title": "What is React",
+            "options": {
+                "a": "Ui Library",
+                "b": "Ui FrameWork",
+                "c": "BackEnd Framework",
+                "d": "Hybrid Framework"
+            },
+            "correct": "a"
+        }
+    ]
+}
