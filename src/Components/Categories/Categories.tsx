@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
-import { Card, Grid, Typography } from '@material-ui/core';
+import { Card, CardContent, Grid, makeStyles, Typography } from '@material-ui/core';
 import { QuizInterface } from '../Quiz/Quiz'
+import QuizzCard from '../QuizzCard/QuizzCard';
 
 interface Props {
   quizzes: {
     [key: string]: QuizInterface
   }
 }
+
+const useStyles = makeStyles({
+  root: {
+    padding: '10%',
+    minHeight: '100vh'
+  },
+});
 
 /**
  * Extracts the categories from the quizzes and makes sure there only one of each.
@@ -21,23 +29,25 @@ const extractCategories = (quizzes: Props['quizzes']): string [] => {
 }
 
 const Categories: React.FC<Props> = (props: Props) => {
+  const classes = useStyles();
   const [extractedCategories, setExtractedCategories] = useState(extractCategories(props.quizzes))
   return (
-    <Grid className="Categories">
-      {extractedCategories.map((category, i) => <Grid container key={i}>
-        <Typography variant="h2">
-          {category}
-        </Typography>
-        {
-          Object.keys(props.quizzes)
-            .filter((k, i) => props.quizzes[k].category === category)
-            .map(k => <Card>
-              <Typography>
-                {props.quizzes[k].name}
-              </Typography>
-            </Card>)
-        }
-      </Grid>)}
+    <Grid className={`Categories ${classes.root}`} container>
+      {
+        extractedCategories.map((category, i) =>
+          <Grid container direction='column' key={i}>
+            <Typography variant="h2" gutterBottom>
+              {category}
+            </Typography>
+            <Grid container spacing={2}>
+              {
+                Object.keys(props.quizzes)
+                  .filter((k, i) => props.quizzes[k].category === category)
+                  .map(k => <QuizzCard quiz={props.quizzes[k]}/>)
+              }
+            </Grid>
+          </Grid>
+      )}
     </Grid>
   );
 }
