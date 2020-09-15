@@ -1,15 +1,25 @@
 import React from 'react';
 import Question, {QuestionInterface} from '../Question/Question';
 
+export interface QuizInterface {
+  category: string,
+  name: string,
+  id: string,
+  iconUrl: string,
+  questions: QuestionInterface[]
+}
+
 const Quiz : React.FC = () => {
   let questions: QuestionInterface[] = [
     {
-      tittle: 'What is react',
-      option1: 'Ui library',
-      option2: 'Ui FrameWork',
-      option3: 'BackEnd Framework',
-      option4: 'Hybrid Framework',
-      correctOptions: 1
+      title: 'What is react',
+      options: {
+        a: 'Ui library',
+        b: 'Ui FrameWork',
+        c: 'BackEnd Framework',
+        d: 'Hybrid Framework',
+      },
+      correct: 'a'
     }
   ]
   return (

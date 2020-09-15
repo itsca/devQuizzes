@@ -1,18 +1,18 @@
 {
     "category": "frontEnd",
-    "name": "React",
-    "id": "1",
-    "iconUrl": "https://img.icons8.com/officel/80/000000/react.png",
+    "name": "Angular",
+    "id": "2",
+    "iconUrl": "https://img.icons8.com/color/96/000000/angularjs.png",
     "questions": [
         {
-            "title": "What is React",
+            "title": "What is Angular",
             "options": {
                 "a": "Ui Library",
                 "b": "Ui FrameWork",
                 "c": "BackEnd Framework",
                 "d": "Hybrid Framework"
             },
-            "correct": "a"
+            "correct": "b"
         }
     ]
 }

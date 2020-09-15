@@ -38,13 +38,13 @@ const Landing: React.FC = () => {
     <Box display='flex' flex='1' bgcolor='#6E81FF' style={{ height: '100vh' }}>
       <Grid container className="Landing" justify='flex-start' alignContent='center'>
         <Grid item sm={12} md={6}>
-            <Typography variant="h1" component="h2" className={classes.whiteText}>
+            <Typography variant="h1" component="h2" className={classes.whiteText} align='center'>
               Welcome,
             </Typography>
-            <Typography variant="h2" component="h2" gutterBottom className={classes.whiteText}>
+            <Typography variant="h2" component="h2" gutterBottom className={classes.whiteText} align='center'>
               to DevQuizzes
             </Typography>
-            <Typography variant="body2" className={`${classes.whiteText} ${classes.welcomeParagraph}`}>
+            <Typography variant="body2" className={`${classes.whiteText} ${classes.welcomeParagraph}`} align='center'>
               Free technology quizzes to practice your skills and knowledge, no registration required!, just free tech quizzes on demand for your delight and enoyment :).
             </Typography>
         </Grid>

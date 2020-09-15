@@ -4,12 +4,14 @@ import Typography from '@material-ui/core/Typography';
 import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, makeStyles } from '@material-ui/core';
 
 export interface QuestionInterface {
-  tittle: string,
-  option1: string,
-  option2: string,
-  option3: string,
-  option4: string,
-  correctOptions: number
+  title: string,
+  options: {
+    a: string,
+    b: string,
+    c: string,
+    d: string
+  },
+  correct: string
 }
 
 interface QuestionProps {
@@ -42,7 +44,7 @@ function Question(props: QuestionProps) {
     <div className='Question'>
       <Card>
         <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel component="legend">{props.data.tittle}</FormLabel>
+        <FormLabel component="legend">{props.data.title}</FormLabel>
         <RadioGroup
           aria-label="Gender"
           name="gender1"
@@ -50,10 +52,10 @@ function Question(props: QuestionProps) {
           value={value}
           onChange={handleChange}
         >
-          <FormControlLabel value={1} control={<Radio />} label={props.data.option1} />
-          <FormControlLabel value={2} control={<Radio />} label={props.data.option2} />
-          <FormControlLabel value={3} control={<Radio />} label={props.data.option3} />
-          <FormControlLabel value={4} control={<Radio />} label={props.data.option4} />
+          <FormControlLabel value={1} control={<Radio />} label={props.data.options.a} />
+          <FormControlLabel value={2} control={<Radio />} label={props.data.options.b} />
+          <FormControlLabel value={3} control={<Radio />} label={props.data.options.c} />
+          <FormControlLabel value={4} control={<Radio />} label={props.data.options.d} />
         </RadioGroup>
       </FormControl>
       </Card>
