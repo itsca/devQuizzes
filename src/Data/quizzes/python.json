@@ -1,0 +1,18 @@
+{
+    "category": "General Programming Languages",
+    "name": "Python",
+    "id": "1",
+    "iconUrl": "https://img.icons8.com/color/48/000000/python.png",
+    "questions": [
+        {
+            "title": "What is the difference between an array and a list",
+            "options": {
+                "a": "Lists need to first be imported, or declared, from other libraries (i.e. numpy).",
+                "b": "Lists consume more memory as they are allocated a few extra elements to allow for quicker appending of items.",
+                "c": "Arrays can also be re-sized quickly in a time-efficient manner. This is because Python initializes some extra elements in the array at initialization.",
+                "d": "Lists can only store homogenous data. They have values with uniform data types."
+            },
+            "correct": "b"
+        }
+    ]
+}
