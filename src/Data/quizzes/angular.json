@@ -5,7 +5,7 @@
     "iconUrl": "https://img.icons8.com/color/96/000000/angularjs.png",
     "questions": [
         {
-            "title": "What is Angular",
+            "title": "What is Angular?",
             "options": {
                 "a": "Ui Library",
                 "b": "Ui FrameWork",

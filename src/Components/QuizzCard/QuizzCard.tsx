@@ -2,6 +2,7 @@ import React from 'react';
 import { Avatar, Button, Card, CardContent, CardHeader, Grid, Theme, Typography, withStyles } from '@material-ui/core';
 import { QuizInterface } from '../Quiz/Quiz';
 import { purple } from '@material-ui/core/colors';
+import { useHistory } from 'react-router-dom';
 
 interface Props {
   quiz: QuizInterface
@@ -17,7 +18,12 @@ const ColorButton = withStyles((theme: Theme) => ({
   },
 }))(Button);
 
+const handleStartClicked = (): void => {
+
+}
+
 const QuizzCard: React.FC<Props> = (props) => {
+  const history = useHistory();
   const {quiz} = props
   return (
     <Grid item xs>
@@ -31,13 +37,13 @@ const QuizzCard: React.FC<Props> = (props) => {
         />
         <CardContent>
           <ColorButton 
-                  variant="contained" 
-                  color="primary"
-                  onClick={event => console.log('go to quiz')}
-                  size='large'
-                >
-                  Start Quiz
-                </ColorButton>
+            variant="contained" 
+            color="primary"
+            onClick={event => history.push(`main/quiz/${quiz.id}`)}
+            size='large'
+          >
+            Start Quiz
+          </ColorButton>
         </CardContent>
       </Card>
     </Grid>

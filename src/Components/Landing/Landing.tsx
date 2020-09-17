@@ -26,9 +26,9 @@ const ColorButton = withStyles((theme: Theme) => ({
   },
 }))(Button);
 
-const clickCheckQuizzesHanlder = (history: any) => {
+const clickCheckQuizzesHandler = (history: any) => {
   // check any type on history
-  history.push("/Main");
+  history.push("/main");
 }
 
 const Landing: React.FC = () => {
@@ -53,7 +53,7 @@ const Landing: React.FC = () => {
               <ColorButton 
                 variant="contained" 
                 color="primary"
-                onClick={event => clickCheckQuizzesHanlder(history)}
+                onClick={event => clickCheckQuizzesHandler(history)}
                 size='large'
               >
                 Check the quizzes

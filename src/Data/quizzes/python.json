@@ -1,11 +1,11 @@
 {
     "category": "General Programming Languages",
     "name": "Python",
-    "id": "1",
+    "id": "3",
     "iconUrl": "https://img.icons8.com/color/48/000000/python.png",
     "questions": [
         {
-            "title": "What is the difference between an array and a list",
+            "title": "What is the difference between an array and a list?",
             "options": {
                 "a": "Lists need to first be imported, or declared, from other libraries (i.e. numpy).",
                 "b": "Lists consume more memory as they are allocated a few extra elements to allow for quicker appending of items.",

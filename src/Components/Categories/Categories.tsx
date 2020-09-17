@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, CardContent, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Grid, makeStyles, Typography } from '@material-ui/core';
 import { QuizInterface } from '../Quiz/Quiz'
 import QuizzCard from '../QuizzCard/QuizzCard';
 
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 });
 
 /**
- * Extracts the categories from the quizzes and makes sure there only one of each.
+ * Extracts the categories from the quizzes and makes sure there's only one of each.
  * @param quizzes
  */
 const extractCategories = (quizzes: Props['quizzes']): string [] => {
@@ -43,7 +43,7 @@ const Categories: React.FC<Props> = (props: Props) => {
               {
                 Object.keys(props.quizzes)
                   .filter((k, i) => props.quizzes[k].category === category)
-                  .map(k => <QuizzCard quiz={props.quizzes[k]}/>)
+                  .map((k, i) => <QuizzCard key={i} quiz={props.quizzes[k]}/>)
               }
             </Grid>
           </Grid>

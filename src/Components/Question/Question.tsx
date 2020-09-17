@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, makeStyles } from '@material-ui/core';
+import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, makeStyles, Grid, CardContent, CardHeader, Button, CardActions } from '@material-ui/core';
 
 export interface QuestionInterface {
   title: string,
@@ -41,25 +41,36 @@ function Question(props: QuestionProps) {
   }
 
   return (
-    <div className='Question'>
+    <Grid item xs={6} className='Question'>
       <Card>
-        <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel component="legend">{props.data.title}</FormLabel>
-        <RadioGroup
-          aria-label="Gender"
-          name="gender1"
-          className={classes.group}
-          value={value}
-          onChange={handleChange}
-        >
-          <FormControlLabel value={1} control={<Radio />} label={props.data.options.a} />
-          <FormControlLabel value={2} control={<Radio />} label={props.data.options.b} />
-          <FormControlLabel value={3} control={<Radio />} label={props.data.options.c} />
-          <FormControlLabel value={4} control={<Radio />} label={props.data.options.d} />
-        </RadioGroup>
-      </FormControl>
+      <CardHeader
+          title={props.data.title}
+          subheader={`1/15`}
+        />
+        <CardContent>
+          <FormControl component="fieldset" className={classes.formControl}>
+            {/* <FormLabel component="legend">{props.data.title}</FormLabel> */}
+            <RadioGroup
+              aria-label="Gender"
+              name="gender1"
+              className={classes.group}
+              value={value}
+              onChange={handleChange}
+            >
+              <FormControlLabel value={1} control={<Radio />} label={props.data.options.a} />
+              <FormControlLabel value={2} control={<Radio />} label={props.data.options.b} />
+              <FormControlLabel value={3} control={<Radio />} label={props.data.options.c} />
+              <FormControlLabel value={4} control={<Radio />} label={props.data.options.d} />
+            </RadioGroup>
+          </FormControl>
+        </CardContent>
+        <CardActions>
+          <Grid container justify='flex-end'>
+            <Button size="small">Submit</Button>
+          </Grid>
+        </CardActions>
       </Card>
-    </div>
+    </Grid>
   );
 }
 
