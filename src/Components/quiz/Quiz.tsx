@@ -1,6 +1,6 @@
-import { Grid, LinearProgress, makeStyles, Theme, withStyles } from '@material-ui/core';
+import { Grid, LinearProgress, makeStyles, Theme, Typography, withStyles } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Question, {QuestionInterface} from '../Question/Question';
 
@@ -12,7 +12,7 @@ export interface QuizInterface {
   questions: QuestionInterface[]
 }
 
-interface Asnwer {
+interface Answer {
   questionIndex: number,
   value: string
 }
@@ -40,22 +40,38 @@ const FullWidthProgressBar = withStyles((theme: Theme) => ({
 }))(LinearProgress);
 
 const Quiz : React.FC<Props> = (props) => {
-  const classes = useStyles();
-  let { quizId } = useParams<RouteParams>();
-  let questions: QuestionInterface[] = Object.keys(props.quizzes).filter((k, i) => props.quizzes[k].id === quizId).map((v) => { return props.quizzes[v].questions})[0]
+  const classes = useStyles()
+  const { quizId } = useParams<RouteParams>()
   let [ currentQuestionIndex, setCurrentQuestionIndex ] = useState<number>(0)
-  let [ answers, setAnswers ] = useState<Asnwer[]>([])
-  let quizzProgress: number = ((currentQuestionIndex + 1) / questions.length) * 100
+  let [ answers, setAnswers ] = useState<Answer[]>([])
+  let [ correctAnswers, setCorrectAnswers ] = useState<Answer[]>([])
+  let [ isFinished, setIsFinished ] = useState<boolean>(false)
+  const questions: QuestionInterface[] = Object.keys(props.quizzes).filter((k, i) => props.quizzes[k].id === quizId).map((v) => { return props.quizzes[v].questions})[0]
+  const quizzProgress: number = ((currentQuestionIndex + 1) / questions.length) * 100
+  const isLastQuestion = currentQuestionIndex + 1 === questions.length
+  const isFinalAnswer: boolean = answers.length === questions.length
 
   const handleNextQuestion = (questionIndex: number, value: string): void => {
-    let currentAnswers: Asnwer[] = [...answers]
+    let currentAnswers: Answer[] = [...answers]
+    setCurrentQuestionIndex(!isLastQuestion ? currentQuestionIndex + 1 : currentQuestionIndex)
+    
     currentAnswers.push({questionIndex, value})
     setAnswers(currentAnswers)
-    setCurrentQuestionIndex(currentQuestionIndex < questions.length - 1 ? currentQuestionIndex + 1 : currentQuestionIndex)
     console.log('Answers are now', currentAnswers)
   }
 
-  // const process
+  const processAnswers = ():void => {
+    const extractedCorrectAnswers: Answer[] = answers.filter((answer, i) => answer.value === questions[answer.questionIndex].correct)
+    setCorrectAnswers(extractedCorrectAnswers)
+    setIsFinished(true)
+    console.log('Correct answers are ', extractedCorrectAnswers)
+  }
+
+  useEffect(() => {
+    if (isFinalAnswer) {
+      processAnswers()
+    }
+  }, [answers])
 
   return (
     <Grid className={`quiz ${classes.root}`} container>
@@ -65,19 +81,32 @@ const Quiz : React.FC<Props> = (props) => {
         color="secondary" 
       />
       <Grid item xs>
-        <Grid container direction='column' alignContent='center' spacing={2}>
-          <Question 
-            data={questions[currentQuestionIndex]}
-            onNextQuestion={(value) => handleNextQuestion(currentQuestionIndex, value)} 
-            questionNumber={`${currentQuestionIndex + 1}/${questions.length}`} 
-          />
-          {/* <Grid item xs={6}>
-            <Alert severity="success">
-              <AlertTitle>Correct!</AlertTitle>
-                This is a success alert — <strong>check it out!</strong>
-              </Alert>
-          </Grid> */}
-        </Grid>
+        {
+          !isFinished ? 
+          (
+            <Grid container direction='column' alignContent='center' spacing={2}>
+              <Question 
+                data={questions[currentQuestionIndex]}
+                onNextQuestion={(value) => handleNextQuestion(currentQuestionIndex, value)} 
+                questionNumber={`${currentQuestionIndex + 1}/${questions.length}`} 
+                isLastQuestion={isLastQuestion}
+              />
+              {/* <Grid item xs={6}>
+                <Alert severity="success">
+                  <AlertTitle>Correct!</AlertTitle>
+                    This is a success alert — <strong>check it out!</strong>
+                  </Alert>
+              </Grid> */}
+            </Grid>
+          ) : 
+          (
+            <Grid container direction='column' alignContent='center' spacing={2}>
+              <Typography variant='h2'>
+                you are done!
+              </Typography>
+            </Grid>
+          )
+        }
       </Grid>
     </Grid>
   );

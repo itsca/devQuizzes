@@ -17,7 +17,8 @@ export interface QuestionInterface {
 interface QuestionProps {
   data: QuestionInterface,
   questionNumber: string,
-  onNextQuestion: (value: string) => void
+  onNextQuestion: (value: string) => void,
+  isLastQuestion: boolean
 }
 
 
@@ -34,14 +35,15 @@ function Question(props: QuestionProps) {
       margin: theme.spacing(1, 0),
     },
   }));
-
+  
   const classes = useStyles();
   const [value, setValue] = React.useState('');
+  const {data, questionNumber, onNextQuestion, isLastQuestion} = props
 
   function handleChange(event: React.ChangeEvent<unknown>) {
     setValue((event.target as HTMLInputElement).value);
   }
-  const {data, questionNumber, onNextQuestion} = props
+
   return (
     <Grid item xs={6} className='Question'>
       <Card>
@@ -67,7 +69,7 @@ function Question(props: QuestionProps) {
         </CardContent>
         <CardActions>
           <Grid container justify='flex-end'>
-            <Button size="small" disabled={!value} onClick={() => onNextQuestion(value)}>Next</Button>
+            <Button size="small" disabled={!value} onClick={() => onNextQuestion(value)}>{isLastQuestion ? 'Submit' : 'Next'}</Button>
           </Grid>
         </CardActions>
       </Card>
