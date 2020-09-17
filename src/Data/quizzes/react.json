@@ -13,6 +13,36 @@
                 "d": "Hybrid Framework"
             },
             "correct": "a"
+        },
+        {
+            "title": "What is JSX?",
+            "options": {
+                "a": "Markup Language",
+                "b": "UI Framework",
+                "c": "Javascript syntaxt extension",
+                "d": "UI Library"
+            },
+            "correct": "c"
+        },
+        {
+            "title": "What is a pure component?",
+            "options": {
+                "a": "An advanced technique in React for reusing component logic",
+                "b": "A component that renders the same output for the same state",
+                "c": "A component that renders the same output for the same props",
+                "d": "A component that renders the same output for the same state and props"
+            },
+            "correct": "d"
+        },
+        {
+            "title": "What is a higher order component?",
+            "options": {
+                "a": "A component that renders the same output for the same state and props",
+                "b": "A component that contains children",
+                "c": "An advanced technique in React for reusing component logic.",
+                "d": "A component that renders the same output for the same state"
+            },
+            "correct": "c"
         }
     ]
 }
