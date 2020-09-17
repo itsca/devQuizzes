@@ -15,7 +15,9 @@ export interface QuestionInterface {
 }
 
 interface QuestionProps {
-  data: QuestionInterface
+  data: QuestionInterface,
+  questionNumber: string,
+  onNextQuestion: (value: string) => void
 }
 
 
@@ -34,39 +36,38 @@ function Question(props: QuestionProps) {
   }));
 
   const classes = useStyles();
-  const [value, setValue] = React.useState('female');
+  const [value, setValue] = React.useState('');
 
   function handleChange(event: React.ChangeEvent<unknown>) {
     setValue((event.target as HTMLInputElement).value);
   }
-
+  const {data, questionNumber, onNextQuestion} = props
   return (
     <Grid item xs={6} className='Question'>
       <Card>
       <CardHeader
-          title={props.data.title}
-          subheader={`1/15`}
+          title={data.title}
+          subheader={questionNumber}
         />
         <CardContent>
           <FormControl component="fieldset" className={classes.formControl}>
-            {/* <FormLabel component="legend">{props.data.title}</FormLabel> */}
             <RadioGroup
-              aria-label="Gender"
-              name="gender1"
+              aria-label="question"
+              name="question"
               className={classes.group}
               value={value}
               onChange={handleChange}
             >
-              <FormControlLabel value={1} control={<Radio />} label={props.data.options.a} />
-              <FormControlLabel value={2} control={<Radio />} label={props.data.options.b} />
-              <FormControlLabel value={3} control={<Radio />} label={props.data.options.c} />
-              <FormControlLabel value={4} control={<Radio />} label={props.data.options.d} />
+              <FormControlLabel value={'a'} control={<Radio />} label={data.options.a} />
+              <FormControlLabel value={'b'} control={<Radio />} label={data.options.b} />
+              <FormControlLabel value={'c'} control={<Radio />} label={data.options.c} />
+              <FormControlLabel value={'d'} control={<Radio />} label={data.options.d} />
             </RadioGroup>
           </FormControl>
         </CardContent>
         <CardActions>
           <Grid container justify='flex-end'>
-            <Button size="small">Submit</Button>
+            <Button size="small" disabled={!value} onClick={() => onNextQuestion(value)}>Next</Button>
           </Grid>
         </CardActions>
       </Card>
