@@ -1,7 +1,7 @@
-import { Grid, LinearProgress, makeStyles, Theme, Typography, withStyles } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, CardHeader, Grid, LinearProgress, makeStyles, Theme, Typography, withStyles } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Question, {QuestionInterface} from '../Question/Question';
 
 export interface QuizInterface {
@@ -40,6 +40,7 @@ const FullWidthProgressBar = withStyles((theme: Theme) => ({
 }))(LinearProgress);
 
 const Quiz : React.FC<Props> = (props) => {
+  const history = useHistory();
   const classes = useStyles()
   const { quizId } = useParams<RouteParams>()
   let [ currentQuestionIndex, setCurrentQuestionIndex ] = useState<number>(0)
@@ -102,8 +103,27 @@ const Quiz : React.FC<Props> = (props) => {
           (
             <Grid container direction='column' alignContent='center' spacing={2}>
               <Typography variant='h2'>
-                you are done!
+                Completed!
               </Typography>
+              <Grid item xs={6} className='Results'>
+                <Card>
+                  <CardHeader
+                    title={'Results'}
+                    // subheader={questionNumber}
+                  />
+                  <CardContent>
+                    <Alert severity="success">
+                      <AlertTitle>{`Your Score ${(correctAnswers.length / answers.length) * 100 }`}</AlertTitle>
+                      This is a success alert — <strong>check it out!</strong>
+                    </Alert>
+                  </CardContent>
+                  <CardActions>
+                    <Grid container justify='flex-end'>
+                      <Button size="small" onClick={() => history.push('/main')}>{'Finish'}</Button>
+                    </Grid>
+                  </CardActions>
+                </Card>
+              </Grid>
             </Grid>
           )
         }
