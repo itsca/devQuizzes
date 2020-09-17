@@ -12,6 +12,11 @@ export interface QuizInterface {
   questions: QuestionInterface[]
 }
 
+interface Asnwer {
+  questionIndex: number,
+  value: string
+}
+
 interface Props {
   quizzes: {
     [key: string]: QuizInterface
@@ -38,13 +43,19 @@ const Quiz : React.FC<Props> = (props) => {
   const classes = useStyles();
   let { quizId } = useParams<RouteParams>();
   let questions: QuestionInterface[] = Object.keys(props.quizzes).filter((k, i) => props.quizzes[k].id === quizId).map((v) => { return props.quizzes[v].questions})[0]
-  let [ currentQuestionIndex, setCurrentQuestionIndex ] = useState(0)
+  let [ currentQuestionIndex, setCurrentQuestionIndex ] = useState<number>(0)
+  let [ answers, setAnswers ] = useState<Asnwer[]>([])
   let quizzProgress: number = ((currentQuestionIndex + 1) / questions.length) * 100
+
   const handleNextQuestion = (questionIndex: number, value: string): void => {
-    // console.log(questionIndex)
-    // console.log(value)
+    let currentAnswers: Asnwer[] = [...answers]
+    currentAnswers.push({questionIndex, value})
+    setAnswers(currentAnswers)
     setCurrentQuestionIndex(currentQuestionIndex < questions.length - 1 ? currentQuestionIndex + 1 : currentQuestionIndex)
+    console.log('Answers are now', currentAnswers)
   }
+
+  // const process
 
   return (
     <Grid className={`quiz ${classes.root}`} container>
