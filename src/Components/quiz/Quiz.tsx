@@ -51,6 +51,7 @@ const Quiz : React.FC<Props> = (props) => {
   const quizzProgress: number = ((currentQuestionIndex + 1) / questions.length) * 100
   const isLastQuestion = currentQuestionIndex + 1 === questions.length
   const isFinalAnswer: boolean = answers.length === questions.length
+  let finalScore: number = isFinished ? (correctAnswers.length / answers.length) * 100 : 0
 
   const handleNextQuestion = (questionIndex: number, value: string): void => {
     let currentAnswers: Answer[] = [...answers]
@@ -66,6 +67,26 @@ const Quiz : React.FC<Props> = (props) => {
     setCorrectAnswers(extractedCorrectAnswers)
     setIsFinished(true)
     console.log('Correct answers are ', extractedCorrectAnswers)
+  }
+
+  const getScoreSeverity = (score: number):"success" | "info" | "warning" | "error" | undefined => {
+    if (score >= 70 && score < 80 ) {
+      return "info"
+    }
+    if (score >= 80 ) {
+      return "success"
+    }
+    return "error"
+  }
+
+  const getScoreMessage = (score: number):string => {
+    if (score >= 70 && score < 80 ) {
+      return "You passed, but there's still room for improvement."
+    }
+    if (score >= 80 ) {
+      return "You passed, congratulations!."
+    }
+    return "No luck this time, but you can take this quizz again whenever you like."
   }
 
   useEffect(() => {
@@ -102,19 +123,16 @@ const Quiz : React.FC<Props> = (props) => {
           ) : 
           (
             <Grid container direction='column' alignContent='center' spacing={2}>
-              <Typography variant='h2'>
-                Completed!
-              </Typography>
               <Grid item xs={6} className='Results'>
                 <Card>
                   <CardHeader
                     title={'Results'}
-                    // subheader={questionNumber}
+                    subheader={finalScore >= 70 ? 'Passed!' : 'Failed!'}
                   />
                   <CardContent>
-                    <Alert severity="success">
-                      <AlertTitle>{`Your Score ${(correctAnswers.length / answers.length) * 100 }`}</AlertTitle>
-                      This is a success alert — <strong>check it out!</strong>
+                    <Alert severity={getScoreSeverity(finalScore)}>
+                      <AlertTitle>{`Your Score ${finalScore}`}</AlertTitle>
+                      {getScoreMessage(finalScore)}
                     </Alert>
                   </CardContent>
                   <CardActions>
