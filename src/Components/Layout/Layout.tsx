@@ -4,11 +4,9 @@ import { Route, Switch } from 'react-router-dom';
 import { Grid, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
-import Main from '../Main/Main'
+import Main from '../main/Main'
 import MainBar from '../MainBar/MainBar';
-import Quiz from '../Quiz/Quiz';
 import Landing from '../Landing/Landing';
-import Quizzes from '../../Data/combinedQuizzes'
 
 const useStyles = makeStyles({
   root: {

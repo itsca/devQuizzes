@@ -16,16 +16,6 @@ const useStyles = makeStyles({
   }
 });
 
-const ColorButton = withStyles((theme: Theme) => ({
-  root: {
-    color: theme.palette.getContrastText(purple[500]),
-    backgroundColor: '#61C9FF',
-    '&:hover': {
-      backgroundColor: '#5891E8',
-    },
-  },
-}))(Button);
-
 const clickCheckQuizzesHandler = (history: any) => {
   // check any type on history
   history.push("/main");
@@ -50,14 +40,14 @@ const Landing: React.FC = () => {
         </Grid>
         <Grid item sm={12} md={6} direction='column' justify='center'>
             <Grid className={classes.maxHeight} container xs={12} justify='center' alignContent='center' direction='column'>
-              <ColorButton 
+              <Button 
                 variant="contained" 
-                color="primary"
+                color="secondary"
                 onClick={event => clickCheckQuizzesHandler(history)}
                 size='large'
               >
                 Check the quizzes
-              </ColorButton>
+              </Button>
             </Grid>
         </Grid>
       </Grid>
