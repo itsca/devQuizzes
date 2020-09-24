@@ -1,8 +1,8 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Quiz from './Quiz';
 import quizzes from '../../Data/combinedQuizzes'
+import Quiz from './Quiz';
 
 
 Enzyme.configure({ adapter: new Adapter() });
