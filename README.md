@@ -1,44 +1,94 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+Welcome to DevQuizzes.
 
-In the project directory, you can run:
 
-### `yarn start`
+> A quiz repository. - v0.1.0
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+A repository for quizzes curated by developers on github that you can take for free.
 
-### `yarn test`
+To contribute with a quiz you can make a pull request to the repo with the quiz template.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `yarn build`
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+What things you need to install the software and how to install them
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+- Git
+- Node
+- more to come
 
-### `yarn eject`
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Installing
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Clone this project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+Git clone https://github.com/itsca/devQuizzes.git
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Install dependencies
 
-## Learn More
+```
+cd devQuizzes
+yarn install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Run the project with
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+yarn start
+```
+
+## Running the tests
+
+* Tests have not beed set up yet.
+
+```
+yarn test
+```
+
+### Break down into end to end tests
+
+Todo.
+
+### And coding style tests
+
+Todo.
+
+## Deployment
+
+Todo.
+
+## Built With
+
+* [React-CRA](https://facebook.github.io/create-react-app/) - The web framework used.
+* [Typescript](https://www.typescriptlang.org/) - Type checking.
+* [MUI](https://material-ui.com/) - Style Framework.
+
+## Contributing
+
+*WIP
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning 
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+
+## Authors
+
+* **Javier Escalante** - [Itsca](https://github.com/itsca)
+
+## Contributors
+
+* **Leo** - [Leo](https://github.com/leomendoza123)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
